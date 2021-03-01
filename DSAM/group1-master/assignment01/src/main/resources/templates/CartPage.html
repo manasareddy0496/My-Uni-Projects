@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Beverages Management System</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-2">
+    <h2><centre>Beverages Management System</centre> </h2>
+    <br><br>
+    <a th:href = "@{/beverages}" class="btn btn-primary btn-sm mb-3"> Home Page </a>
+    <br>
+    <br>
+    <h4> Items in Cart</h4>
+    <!--/*@thymesVar id="cartitems" type="java"*/-->
+    <form method="POST" th:action="@{/saveItemsToOrder}" th:object="${cartitems}"
+          >
+        <table border="1" class = "table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>Item_Number</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+
+                <td th:text="${item.position}"></td>
+                <td th:text="${item.price}"></td>
+                <td> <a th:href="@{/deleteOrderItems/{id}(id=${item.orderItemId})}" class="btn btn-danger">Remove from cart</a>
+                <!--            <td><input name="Confirm_Oscar" th:field="*{OrderItemId}" type="checkbox"></td>-->
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-info col-2"> Place Order</button>
+    </form>
+
+
+    <br>
+    <br>
+
+<!--    <a th:href = "@{/saveItemsToOrder}" class="btn btn-primary btn-sm mb-3"> Place Order </a>-->
+
+</div>
+</body>
+</html>

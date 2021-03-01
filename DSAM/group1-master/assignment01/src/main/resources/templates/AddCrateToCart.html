@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Beverages Management System</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Beverages Management System</h1>
+    <hr>
+    <h3>Crate Information</h3>
+
+    <form action="#" th:action="@{/saveCrateToCart}" th:object="${crate}"
+          method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{crateId}"/>
+
+        <label for="id_cratePic">Crate Pic Name</label>
+        <input type="text" id="id_cratePic" readonly th:field="*{cratePic}" class="form-control mb-4 col-4">
+        <span class="text-danger" th:if="${#fields.hasErrors('cratePic')}" th:errors="*{cratePic}"></span>
+        <br>
+
+        <label for="id_name">Name</label>
+        <input type="text" id="id_name" readonly  th:field="*{name}" class="form-control mb-4 col-4">
+        <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <br>
+
+        <label for="id_noOfbottles"> No of bottles:</label>
+        <input type="text" id="id_noOfbottles" readonly th:field="*{noOfBottles}" class="form-control mb-4 col-4">
+        <span class="text-danger" th:if="${#fields.hasErrors('noOfBottles')}" th:errors="*{noOfBottles}"></span>
+        <br>
+
+        <label for="id_cratesInStock"> Crates In Stock:</label>
+        <input type="text" readonly id="id_cratesInStock" th:field="*{cratesInStock}" class="form-control mb-4 col-4">
+        <span class="text-danger" th:if="${#fields.hasErrors('cratesInStock')}" th:errors="*{cratesInStock}"></span>
+        <br>
+
+        <label for="price"> Price:</label>
+        <input type="text" id="price" readonly th:field="*{price}" class="form-control mb-4 col-4">
+        <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+        <br>
+
+        <label for="Quantity"> No of required crates:</label>
+        <input type="text" id="Quantity" th:field="*{noOfRequiredCrates}" class="form-control mb-4 col-4">
+        <span class="text-danger" th:if="${#fields.hasErrors('noOfRequiredCrates')}" th:errors="*{noOfRequiredCrates}"></span>
+        <br>
+
+        <button type="submit" class="btn btn-info col-2"> Add to Cart</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "@{/beverages}"> Back to Beverages List</a>
+</div>
+</body>
+</html>
+
